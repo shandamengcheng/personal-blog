@@ -6,7 +6,7 @@
 
 - initial
 
-这个关键字的作用是： 设置属性的默认值。**注意，是属性的默认值，不是HTML标签的。**比如说，div的display设置为initial,那么结果是inline。因为display的默认值就是inline,不管什么类型的标签。而对于块级元素来说，display的默认值就是block。因此，**要注意区分默认值和初始值。**默认值就是浏览器默认样式中的值，而初始值不是。
+这个关键字的作用是： 设置属性的默认值。 **注意，是属性的默认值，不是HTML标签的。** 比如说，div的display设置为initial,那么结果是inline。因为display的默认值就是inline,不管什么类型的标签。而对于块级元素来说，display的默认值就是block。因此，**要注意区分默认值和初始值。** 默认值就是浏览器默认样式中的值，而初始值不是。
 
 也可以通过设置属性值为initial来撤销某个元素的样式。
 
@@ -35,4 +35,4 @@ all表示除了direction和unicode-bidi之外的所有属性。
 
 效果请看： https://codepen.io/shandamengcheng/pen/yLgpmRG
 
-**更多阅读：** https://mp.weixin.qq.com/s/NmLa_AMe6womJBb0GRK-vg
+**更多阅读：**  https://mp.weixin.qq.com/s/NmLa_AMe6womJBb0GRK-vg
