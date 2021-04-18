@@ -109,3 +109,11 @@ p.awesome {
    - 原始文档中链接的样式表中的声明按照链接顺序进行连接。
    - 样式属性的声明是根据样式属性所在元素的文档顺序进行排列的，并且这些所有的声明都放置在任何样式表之后。
   > 样式属性指定元素的内联样式。 上面第三条的意思是：对于有内联样式的元素来说，内联样式根据所在的元素在文档中的顺序进行排列，内联样式的声明是放在所有样式表的后面的。（因为从距离上来说，内联样式距离元素更“近”，然后内联元素之间再根据优先级等进行层叠）。
+
+#### 参考文献
+1. 《CSS权威指南》
+2. 《精通CSS 高级Web标准解决方案》
+3. https://www.w3.org/TR/css-cascade-3/#cascading-origins
+4. MDN https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity
+5. MDN https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#specificity_2
+6. 《深入解析CSS》
