@@ -56,6 +56,56 @@ span { color: red; }
 
 #### !important的使用情况
 1. 覆盖行内样式
+使用行内样式和!important被认为是非常不好的做法，但有时候需要使用!important来覆盖行内样式，尤其是当使用一些第三方库的时候，库的作者可能会设置行内样式，此时如果我们需要覆盖的话，选择使用!important。
+2. 覆盖高优先级
+```
+#someElement p {
+  color: blue;
+}
+
+p.awesome {
+  color: red;
+}
+```
+如果想要文本颜色为red，这个时候由于样式二的优先级低于第一个，通过设置!important可以实现awesome中的样式覆盖someElement中的。
+#### 如何覆盖!important
+假设说当前有一个样式:
+```
+td { height: 100px !important; }
+```
+1. 添加另一个带有!important的规则，并为选择器赋予更高的优先级或者在现有的选择器后面添加具有相同选择器的CSS规则。
+```
+table td    { height: 50px !important; }
+.myTable td { height: 50px !important; }
+#myTable td { height: 50px !important; }
+
+td { height: 50px !important; }
+```
+2. 最好重写原始规则，以避免!important的使用
+```
+[id="someElement"] p {
+  color: blue;
+}
+
+p.awesome {
+  color: red;
+}
+```
+使用属性选择器而不是ID选择器，当需要进行覆盖时，可以避免使用!important。
 ### CSS层叠机制的完整过程：
 1. 找到匹配相应元素的所有规则
-2. 
+2. 根据来源和重要性确定其优先关系：
+   - Transition声明
+   - 用户代理（浏览器默认样式）!important声明
+   - 用户样式!important声明
+   - 作者样式!important声明
+   - Animation声明
+   - 作者样式声明
+   - 用户样式声明
+   - 用户代理声明
+3. 当来源相同时，根据样式规则的优先级大小判断应用的样式
+4. 源码顺序。当来源，重要性，优先级相同时，以位置靠后的声明为准。
+   - 导入样式表中的声明是按顺序排列的，就好像它们的样式表已经代替了@import规则一样
+   - 原始文档中链接的样式表中的声明按照链接顺序进行连接。
+   - 样式属性的声明是根据样式属性所在元素的文档顺序进行排列的，并且这些所有的声明都放置在任何样式表之后。
+  > 样式属性指定元素的内联样式。 上面第三条的意思是：对于有内联样式的元素来说，内联样式根据所在的元素在文档中的顺序进行排列，内联样式的声明是放在所有样式表的后面的。（因为从距离上来说，内联样式距离元素更“近”，然后内联元素之间再根据优先级等进行层叠）。
