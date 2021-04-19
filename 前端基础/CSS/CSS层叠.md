@@ -110,6 +110,15 @@ p.awesome {
    - 样式属性的声明是根据样式属性所在元素的文档顺序进行排列的，并且这些所有的声明都放置在任何样式表之后。
   > 样式属性指定元素的内联样式。 上面第三条的意思是：对于有内联样式的元素来说，内联样式根据所在的元素在文档中的顺序进行排列，内联样式的声明是放在所有样式表的后面的。（因为从距离上来说，内联样式距离元素更“近”，然后内联元素之间再根据优先级等进行层叠）。
 
+## 继承
+
+如果一个属性没有层叠值的话，该属性可能会继承某个祖先的值。
+常见的可继承属性：
+- 文本相关的属性: color, font, font-family, font-size, font-weight, font-varient, font-style, line-height, letter-spacing, text-align, text-indent, texxt-transform, white-space以及word-spacing
+- 列表相关的属性: list-style, list-style-type, list-style-position以及list-style-image
+- 表格的边框属性: border-spacing, border-collapse
+**注意： 正如上文所提到的，继承的属性的优先级不存在，而通配符( * )设置的样式声明的优先级为0, 因此继承来的样式的优先级*小于*通配符设置的样式。**
+
 #### 参考文献
 1. 《CSS权威指南》
 2. 《精通CSS 高级Web标准解决方案》
