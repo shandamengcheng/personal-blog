@@ -67,3 +67,50 @@
 - CSS中支持了自定义属性值，通过设置自定义属性，可以实现属性值的高效复用。后面会详细介绍。
 9.  无单位的值
 - 在CSS中一些属性可以接受无单位的值，比如line-height, font-weight。一个无单位的0只能用于长度值和百分比，不能用于角度和时间相关的值。
+10. 关键字
+  常见的关键字有none, normal等用于表示样式声明中的属性值的词。特别地，还有全局关键字，即为 **CSS中的特殊值**中所说的initial, inherit, unset, revert以及all。
+11. 字符串
+  字符串由双引号或单引号分隔的一系列字符组成。
+  **注意点：**
+  - 双引号不能出现在双引号内部，除非进行转义。单引号同理。
+  ```
+  content: "this is a 'string'.";
+  content: "this is a \"string\".";
+  content: 'this is a "string".';
+  content: 'this is a \'string\'.'
+  ```
+  - 如果要进行换行的话，换行符本身需要使用反斜杠(\)进行转义。
+  ```
+  a[title="a not s\
+  o very long title"] {/*...*/}
+  a[title="a not so very long title"] {/*...*/}
+  ```
+12. URL
+  在CSS中，通常使用URL()作为属性值指定URL。然而在URL()中，我们可以书写带引号的url或不带引号的url。以下示例中的两种书写方式最终的解析结果相同。由于进行了这种特殊的解析，因此url()仅能按字面地指定其url。
+  ```
+  background: url("http://www.example.com/pinkish.gif");
+  background: url(http://www.example.com/pinkish.gif);
+  ```
+  然而，src()中没有这种特殊的解析规则，因此它的url可以由诸如var()之类的函数提供。
+  ```
+  /* 等同于上面的url() */
+  background: src("http://www.example.com/pinkish.gif");
+  --foo: "http://www.example.com/pinkish.gif";
+  background: src(var(--foo));
+
+  /* 解析错误 */
+  --foo: "http://www.example.com/pinkish.gif";
+  background: url(var(--foo));
+  ```
+  因为值中未定义的'('会导致解析错误，因此整个声明被视为无效。
+
+  在某些CSS上下文中（例如@import中），也允许使用字符串而非函数包装来指代url。在这种情况下，字符串的行为与包含该字符串的url()函数相同。
+  ```
+  /* 以下两个效果相同 */
+  @import url("base-theme.css");
+  @import "base-theme.css";
+  ```
+
+
+## 参考文献
+- CSS标准 https://www.w3.org/TR/css-values-4/
