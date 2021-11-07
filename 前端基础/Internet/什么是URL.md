@@ -27,6 +27,25 @@ URL表示统一资源定位符（Uniform Resource Location）,它表示Web上给
 
 > 在Schema和Authority中间的分隔符是://。冒号表示两个部分之间的分隔，//表示下一个部分是Authority。一个不使用authority的URL的例子是邮件客户端(mailto:foobar)。它包含了一个scheme,但是没有authority。因此，冒号后面没有两条斜线，且它仅作为scheme和地址之间的分隔。
 
+##### Domain Name 域名
+域名是由句点(.)分隔的三个子部分组成的：顶级域，label1, label2。
+```
+
+http://label2.label1.topleveldomain
+
+e.g.
+
+http://www.google.com or http://google.com (the label 2 or www is optional)
+
+```
+通常label1是与域中的内容相关的语义提示。顶级域部分是一个固定的字符集，最常见的是.com。现在还有其他的，比如.biz, .org等。
+域名是从域主机狗改的，拥有域名之后，可以使用label2细分域。label2通常被归为 ***子域***。
+```
+http://email.google.com (goes to Gmail not google homepage)
+
+```
+
+
 #### Path (路径)
 ![](./assets/mdn-url-path@x2.png)
 Path表明了资源在服务器上的位置。在以前的时候会代表资源在服务器上的真实地址。现在，更多的是一种抽象，而没有任何的物理现实。
