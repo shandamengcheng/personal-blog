@@ -13,13 +13,13 @@ URL表示统一资源定位符（Uniform Resource Location）,它表示Web上给
 
 > 以一个例子类比： scheme是邮政服务类型，域名(domain name)是要送到的城市，端口是邮政编码，路径(path)代表接收方所在的建筑，参数(parameters)代表额外信息，锚点代表签收邮件的实际人。
 
-#### Scheme (方案)
+#### 1. Scheme (方案)
 
 ![](./assets/mdn-url-protocol.png)
 
 第一部分是方案，它指明了浏览器请求资源时必须要使用的协议(一个协议是用于在计算机网络中交换或传输数据的方法集)。通常对于网页来说，协议一般是HTTP或HTTPS。但是浏览器也支持其它scheme,比如mailto: 打开一个客户端邮箱。
 
-#### Authority (权限、授权)
+#### 2. Authority (权限、授权)
 ![](./assets/mdn-url-authority.png)
 第二部分是权限部分，通过:// 与scheme分隔开。如果域名和端口号均展示的话，通过冒号(:)分隔：
 1. 域(domain)表示请求的Web服务器。通常是一个域名，但也可以使用IP地址，IP地址相对于域名来说，比较难记忆。
@@ -27,7 +27,7 @@ URL表示统一资源定位符（Uniform Resource Location）,它表示Web上给
 
 > 在Schema和Authority中间的分隔符是://。冒号表示两个部分之间的分隔，//表示下一个部分是Authority。一个不使用authority的URL的例子是邮件客户端(mailto:foobar)。它包含了一个scheme,但是没有authority。因此，冒号后面没有两条斜线，且它仅作为scheme和地址之间的分隔。
 
-##### Domain Name 域名
+#### 2.1 Domain Name 域名
 域名是由句点(.)分隔的三个子部分组成的：顶级域，label1, label2。
 ```
 
@@ -44,17 +44,30 @@ http://www.google.com or http://google.com (the label 2 or www is optional)
 http://email.google.com (goes to Gmail not google homepage)
 
 ```
+上面介绍的只是较为常见的结构形式。
 
+域的层级从右到左逐渐下降。每个label从左到右是右侧的子域。比如：
+```
+www.example.com
 
-#### Path (路径)
+www.example.com是example.com的子域，example.com是.com的子域。
+```
+整个域名的长度不超过其文本表示的253个ASCII字符的总长度。
+
+#### 2.2 hostname 主机名
+主机名是具有至少一个关联IP地址的域名。比如，域名www.exampple.com 和 example.com都是主机名，但是.com却不是。然而，也有一些顶级域，尤其是国家代码顶级域，可能有一个IP地址，这样的话，它们也是主机名。
+
+主机名对相应域名允许的字符施加限制。一个合法的主机名也是一个合法的域名，但是一个合法的域名不一定是一个合法的主机名。
+
+#### 3. Path (路径)
 ![](./assets/mdn-url-path@x2.png)
 Path表明了资源在服务器上的位置。在以前的时候会代表资源在服务器上的真实地址。现在，更多的是一种抽象，而没有任何的物理现实。
 
-#### Parameters参数
+#### 4. Parameters参数
 ![](./assets/mdn-url-parameters@x2.png)
 ?key1=value1&key2=value2是额外提供给服务器的参数，这些参数是一组通过&分隔的key/value对。Web服务器可以在返回资源前通过传过来的参数做额外的功能。
 
-#### Anchor (锚点)
+#### 5. Anchor (锚点)
 ![](./assets/mdn-url-anchor@x2.png)
 一个锚点就像是一个“书签”一样，用于给出浏览器指示以显示位于该“书签”的内容。比如一个HTML页面中，页面将滚动到锚点的位置，视频或音频中会跳到锚点所代表的时间。
 > 注意： 锚点永远不会在请求是发送到服务器。
