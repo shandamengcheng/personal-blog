@@ -9,3 +9,24 @@
 如何防止 Context 引起的 re-render？1）memo context value，避免父级组件 re-render 导致 value 变更从而让依赖 context 的地方全部 re-render，2）拆分 data 和 API（getter 和 setter），这样 getter 变更时依赖 setter 的部分不会 re-render，3）把数据拆小，4）使用 context selector 比如 use-context-selector。
 
 2. [Why reacgt re-renders](https://www.joshwcomeau.com/react/why-react-re-renders/)
+
+3. [生命周期图示](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
+4. [New Suspense SSR Architecture in React 18](https://github.com/reactwg/react-18/discussions/37)
+
+5. [React code conventions and best practices](https://levelup.gitconnected.com/react-code-conventions-and-best-practices-433e23ed69aa)
+
+6. [Prop Drilling](https://kentcdodds.com/blog/prop-drilling)
+
+## Hooks
+
+1. [Do React Hooks Replace Redux?](https://medium.com/javascript-scene/do-react-hooks-replace-redux-210bab340672)
+
+2. [Why hooks are the best thing to happen to React](https://stackoverflow.blog/2021/10/20/why-hooks-are-the-best-thing-to-happen-to-react/)
+## 项目 OR 库
+
+1. https://github.com/remarkablemark/html-react-parser
+
+2. https://github.com/reach/router
+
+3. 

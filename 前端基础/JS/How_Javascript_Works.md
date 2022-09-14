@@ -32,6 +32,8 @@ JS引擎主要包含了两个部分：内存堆(Memory Heap) 和 调用栈(Call 
 
 ### Event Loop
 Event Loop是所有Javascript宿主环境都有的一种内置机制。Event Loop用来循环处理程序多个代码块的执行，每次都会涉及到对JS引擎的调用。
+> HTML规范中表述： Each agent has an associated event loop, which is unique to that agent.
+
 
 #### Call Stack
 
@@ -43,6 +45,9 @@ Event Loop是所有Javascript宿主环境都有的一种内置机制。Event Loo
 - 任何在该函数中被调用的函数都将被添加到call stack中，并在调用到达的时候调用执行。
 - 在当前函数结束执行后，解释器会把它从栈中取出来，然后从该函数的调用点处恢复执行。
 - 如果栈占用比分配给它更多的空间，会导致"stack overflow"错误。
+
+> 当一个函数被调用的时候，一个stack frame(栈桢)会被创建并压入call stack中。但是一些文章以及ECMA规范里的表述为：当一个函数被执行时，会创建一个Execution Context并压入Execution Context Stack中。有人说这是同一个东西的不同称呼，就像Call Stack一样。
+https://stackoverflow.com/questions/55819337/are-stack-frame-and-execution-context-the-same-thing-in-javascript
 
 ```javascript
 function greeting() {
@@ -117,7 +122,28 @@ greeting();
 严格来说，Web APIs和Heap一样，不属于Event Loop这个定义所包含的范围，但是整个event loop的工作流中，离不开这两个部分，因此都统一在Event Loop结构下进行说明。
 
 <hr />
-我们知道，javascript一次只能处理一件事。然而，这只是针对于JS自身而言的，我们的JS运行在其宿主环境内，也就是我们最上面提到的Runtime Environment。那么，这时候宿主环境可以提供一种在JS引擎执行代码的同时执行其他代码的机制。
+我们知道，javascript一次只能处理一件事。然而，这只是针对于JS自身而言的，我们的JS运行在其宿主环境内，也就是我们最上面提到的Runtime Environment。那么，这时候宿主环境可以提供一种在JS引擎执行代码的同时执行其他代码的机制。在我们的浏览器中，浏览器提供一些APIs, 这API可以在JS代码中进行功能调用，然后由宿主环境（agent）而不是JS引擎去执行这些API。这样的话，就不会造成Call Stack的阻塞。
+
+<br />
+<br />
+
+另一方面来说，Web APIs提供了JS语言所不具备的能力，让我们可以在JS代码中处理类似，本地内存管理，操作DOM，发送AJAX请求等等。
+
+
+#### Callback Queue
+
+有了Web APIs之后，我们可以以不用阻塞Call Stack的方式在JS解释器之外同时处理其他事情。但是，这有个问题，外部的这些操作完成之后我们的JS代码该怎么处理这些结果，比如处理一个网络请求的返回？
+<br />
+
+这就是回调(callback)返回作用的时间。通过它们，Web API允许我们在API调用完成后运行代码。
+
+> 什么是回调函数？
+
+> 回调函数是作为一个参数传递给另一个函数的函数。回调函数通常是在代码执行结束之后执行。
+> 比如： setTimeout(function callbackFunc() {console.log('callback')}), 这里的callbackFunc是一个回调函数
+
+
+
 
 ### 参考文献
 - [Introduction to JavaScript Runtime Environments](https://www.codecademy.com/article/introduction-to-javascript-runtime-environments)
