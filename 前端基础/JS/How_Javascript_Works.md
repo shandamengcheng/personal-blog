@@ -142,8 +142,24 @@ greeting();
 > 回调函数是作为一个参数传递给另一个函数的函数。回调函数通常是在代码执行结束之后执行。
 > 比如： setTimeout(function callbackFunc() {console.log('callback')}), 这里的callbackFunc是一个回调函数
 
+由于传给Web API的回调函数都是JS代码，所以，它需要被JS解释器执行的，这意味着这些回调函数也需要使用call stack。那么，就需要等待call stack为空后执行这些回调函数。因此，浏览器需要一个地方来排列这些回调函数，且这些回调函数的执行顺序是有先后关系的，所以是一个queue结构。这就是callback queue的存在意义。
 
+> 值得注意的是：**只有异步操作的callback才会加入到callback queue中。同步代码会同步的执行。**
 
+#### Task 与 Microtask (任务与微任务)
+上面介绍了异步操作的callback在达到执行条件后会被放入callback queue中。然而，这是一个宏观的说法。根据异步操作的执行优先级，不同的异步操作被分为两类：Task（任务），Microtask(微任务)。当达到异步操作的执行条件时，相应的callback会根据优先级放入Task Queue或Microtask Queue。
+
+Task类型：
+- setTimeout
+- setInterval
+- AJAX请求
+- requestAnimationFrame
+- DOM事件
+
+Microtask类型：
+- Promise的then,catch,finally这几个handler
+- Mutation Observer
+- queueMicrotask()方法
 
 ### 参考文献
 - [Introduction to JavaScript Runtime Environments](https://www.codecademy.com/article/introduction-to-javascript-runtime-environments)
