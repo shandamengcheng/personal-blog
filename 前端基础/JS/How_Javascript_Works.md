@@ -165,3 +165,29 @@ Microtask类型：
 - [Introduction to JavaScript Runtime Environments](https://www.codecademy.com/article/introduction-to-javascript-runtime-environments)
 - [Call Stack](https://developer.mozilla.org/en-US/docs/Glossary/Call_stack)
 - [The maximum call stack size](https://2ality.com/2014/04/call-stack-size.html)
+
+
+
+1. https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+2. https://262.ecma-international.org/6.0/#sec-enqueuejob
+3. https://262.ecma-international.org/6.0/#sec-lexical-environments
+4. https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide
+5. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+6. https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide/In_depth
+7. https://deepu.tech/memory-management-in-v8/
+8. https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap
+9. https://dmitripavlutin.com/javascript-callback/
+10. https://html.spec.whatwg.org/multipage/webappapis.html#hostenqueuepromisejob
+11. https://html.spec.whatwg.org/multipage/webappapis.html#user-interaction-task-source
+12. https://w3c.github.io/uievents/#event-flow
+13. https://html.spec.whatwg.org/multipage/parsing.html#html-parser
+14. https://tc39.es/ecma262/#sec-agents
+15. https://tc39.es/ecma262/#executing-thread
+16. https://stackoverflow.com/questions/68525922/why-is-there-a-distinction-between-microtask-and-macrotask-in-javascript
+17. https://stackoverflow.com/questions/9384758/what-is-the-execution-context-in-javascript-exactly
+18. https://stackoverflow.com/questions/7721200/using-javascript-closures-in-settimeout/7722057#7722057
+19. https://stackoverflow.com/questions/61635992/does-using-await-always-involve-a-microtask
+20. https://stackoverflow.com/questions/56851983/why-does-this-line-of-code-with-await-trigger-microtask-queue-processing
+21. https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop#see_also
+22. https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop
+23. https://zhuanlan.zhihu.com/p/33058983
