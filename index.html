@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <style>
+      .outer {
+        margin: 10px;
+        clear: both;
+        min-height: 20px;
+        padding: 10px;
+      }
+      .inner {
+        clear: both;
+        margin: 15px;
+        min-height: 20px;
+      }
+      .bro {
+        margin: 20px;
+      }
+      .inner2 {
+        margin: 12px;
+        clear: both;
+      }
+
+      .container {
+        overflow:auto;
+        border:2px solid;
+      }
+      span {
+        float:left;
+        width:100px;
+        height:100px;
+        background:red;
+        opacity:0.2;
+      }
+      .container > div {
+        height:60px;
+        margin:20px 0;
+        background:blue;
+      }
+      b {
+        display:block;
+        clear:left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>
+      This is a static template, there is no bundler or bundling involved!
+    </h1>
+    <div class="bro">aaaaa</div>
+    <div class="outer" id="outer">
+      <div id="inner" class="inner">test</div>
+      <div class="inner2">
+        <div style="float: left">float</div>
+      </div>
+    </div>
+
+    <div class="container">
+      <span></span>
+      <div></div>
+      <b></b>
+      <div></div>
+    </div>
+    <script>
+      // function doest() {
+      //   return "eere";
+      // }
+      // const outer = document.getElementById("outer");
+      // const inner = document.getElementById("inner");
+
+      // outer.addEventListener("click", (e) => {
+      //   console.log(e.target.id);
+      //   switch (e.target.id) {
+      //     case "inner":
+      //       {
+      //         console.log("inner");
+      //       }
+      //       break;
+      //     case "outer": {
+      //       console.log("outer1");
+      //     }
+      //   }
+      //   e.stopPropagation();
+      // });
+      // outer.addEventListener("click", () => {
+      //   console.log("outer2");
+      // });
+      // inner.addEventListener("click", () => {
+      //   console.log("inner");
+      // });
+    </script>
+  </body>
+</html>
