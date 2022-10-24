@@ -8,3 +8,8 @@
 ### 内存管理
 1. [JavaScript's Memory Management Explained](https://felixgerschau.com/javascript-memory-management/)
 2. [Visualizing memory management in V8 Engine (JavaScript, NodeJS, Deno, WebAssembly)](https://deepu.tech/memory-management-in-v8/)
+
+
+### Let, const, TDZ 以及 块级作用域
+- https://exploringjs.com/es6/ch_variables.html#_the-temporal-dead-zone
+- https://stackoverflow.com/questions/46515262/does-javascript-create-a-new-execution-context-when-executing-a-block

@@ -65,7 +65,10 @@ greeting();
 如果这是一个JS文件里的代码，且要执行该文件时，执行过程如下：
 - 整个script文件会被当成一个匿名函数(anonymous)压入栈中，并执行该“函数”
 
-[![vT8XzF.png](https://s1.ax1x.com/2022/09/04/vT8XzF.png)](https://imgse.com/i/vT8XzF)
+![vT8XzF.png](https://s1.ax1x.com/2022/09/04/vT8XzF.png)
+
+![](https://imgse.com/i/vT8XzF)
+
 - 在anonymous中，发现greeting函数的调用，解释器把greeting()添加到call stack中。
 > 此时的call stack: anonymous - greeting
 - 执行greeting函数中的代码，发现sayHi()函数的调用

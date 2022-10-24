@@ -66,6 +66,24 @@
       <div></div>
     </div>
     <script>
+      let test = 23;
+      var test2 = 10;
+
+      function order(x, y) {
+       try {
+        if (x > y) {
+          let temp = x;
+          console.log(temp)
+        }
+        console.log(x)
+        throw new Error('error')
+       } catch(e) {
+        let test = 'error';
+        console.log(e, test)
+       }
+      }
+
+      order(test, test2)
       // function doest() {
       //   return "eere";
       // }
@@ -86,7 +104,7 @@
       //   }
       //   e.stopPropagation();
       // });
-      // outer.addEventListener("click", () => {
+      // outer.addEventListener("click", () => {  
       //   console.log("outer2");
       // });
       // inner.addEventListener("click", () => {
