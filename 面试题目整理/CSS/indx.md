@@ -59,7 +59,7 @@ CSS的层递机制如下：
     - media: 一个或多个媒体描述符，指明媒体的类型，多个媒体描述符通过逗号分开。
     - title: 用来做样式表的区分。
   > 一个文档可以关联多个样式表。最初显示时，只会使用rel为stylesheet的link标签链接的样式表。如果多个rel为stylesheet的样式表使用了不同的title, 只会应用一个样式表，根据浏览器的实现有所不同。如果不加title，那就是永久样式表，始终用于显示文档。
-- style元素 => 文档样式表 或 嵌入样式表
+- style标签 => 文档样式表 或 嵌入样式表
   - 始终以<style type="text/css>开头
 - @import指令
   - @import指令要在其他CSS规则前面。
@@ -120,9 +120,7 @@ conent + padding + border + margin
   - 祖先是行内元素，容纳块是祖先元素的内容边界。
   - 没有祖辈元素，容纳块是初始容纳块
 
-
 - 如果 position 属性是 fixed，在连续媒体的情况下 (continuous media) 包含块是 viewport ,在分页媒体 (paged media) 下的情况下包含块是分页区域 (page area)。
-
 
 - 如果 position 属性是 absolute 或 fixed，包含块也可能是由满足以下条件的最近祖先元素的内边距区的边缘组成的：
   - transform 或 perspective 的值不是 none
@@ -138,9 +136,40 @@ conent + padding + border + margin
 - 要计算 height top 及 bottom 中的百分值，是通过包含块的 height 的值。如果包含块的 height 值会根据它的内容变化，而且包含块的 position 属性的值被赋予 relative 或 static ，那么，这些值的计算值为 auto。
 - 要计算 height top 及 bottom 中的百分值，是通过包含块的 height 的值。如果包含块的 height 值会根据它的内容变化，而且包含块的 position 属性的值被赋予 relative 或 static ，那么，这些值的计算值为 auto。
 
+### BFC
+> https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context
+
 ### 外边距折叠  => 块盒子
-> https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing#see_also
-对于块级标签。垂直方向上的两个外边距相遇会发生折叠行为。
+> 对于块级标签。垂直方向上的两个外边距相遇会发生折叠行为。
+> float和position: absolute的元素不会发生外边距折叠。
+
+- 同一层相邻元素
+- 没有内容将父元素和后代元素分开
+  - margin-top: border, padding, 行内内容， BFC
+  - margin-bottom: border, padding, 行内内容，height, min-height
+- 空盒子
+  - border, padding, 行内内容，height, min-height
+
+> https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
 
 ### 行内元素与边距
 应用到行内非置换元素的内边距对行高没有任何影响。置换元素的内边距对行高有影响，会填充到四边。
+
+### position属性值
+- static
+- relative
+- fixed
+- sticky
+- absolute
+- inherit
+- initial
+- unset
+
+#### 层叠上下文
+> https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context
+
+#### css实现左边宽度固定，右侧宽度自适应
+
+> https://blog.csdn.net/Charissa2017/article/details/103840885
+
+#### animation 与 transition的区别

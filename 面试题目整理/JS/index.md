@@ -111,3 +111,9 @@ eventPhase 等于 1；如果事件处理程序在目标上被调用，则 eventP
 > 最适合使用事件委托的事件包括：click、mousedown、mouseup、keydown 和 keypress。
 mouseover 和 mouseout 事件冒泡，但很难适当处理，且经常需要计算元素位置（因为 mouseout 会
 在光标从一个元素移动到它的一个后代节点以及移出元素之外时触发）
+
+### 3.toString()为什么会报错
+包装类型都可以这样操作。但是对于数字，.会被JS引擎优先解释为小数点。
+两种方式：
+- (3).toString()
+- 3..toString()

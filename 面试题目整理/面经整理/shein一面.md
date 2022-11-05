@@ -1,0 +1,21 @@
+# shein一面
+
+- css实现左边宽度固定，右侧宽度自适应
+- BFC
+- 作用域
+- ES6常使用的
+- js垃圾回收
+- requestionAnimationFrame的使用
+- 深浅拷贝
+- call, apply, bind的区别
+- 原型和原型链
+- 判断数据的类型
+- 前端工程化都是用什么打包
+- li之间的空隔
+- webpack了解吗
+- react的类组件和函数组件的区别
+- 为什么出现hooks
+- 常用的hooks
+- hooks实现componentWillMount怎么实现
+- 性能优化
+- 为什么var声明会提升，let, const不会
