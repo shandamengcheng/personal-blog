@@ -90,8 +90,7 @@ obj == 666
 ### currentTarget, target 事件
 - currentTarget是事件绑定的DOM对象
 - target是目标元素
-- 在事件处理程序内部，this 对象始终等于 currentTarget 的值，而 target 只包含事件的实际
-目标
+- 在事件处理程序内部，this 对象始终等于 currentTarget 的值，而 target 只包含事件的实际目标
 
 > eventPhase 属性可用于确定事件流当前所处的阶段。如果事件处理程序在捕获阶段被调用，则
 eventPhase 等于 1；如果事件处理程序在目标上被调用，则 eventPhase 等于 2；如果事件处理程序在冒泡阶段被调用，则 eventPhase 等于 3。不过要注意的是，虽然“到达目标”是在冒泡阶段发生的，但其 eventPhase 仍然等于 2
