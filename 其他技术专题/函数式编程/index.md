@@ -94,3 +94,8 @@ js中增加了const声明，但是对于对象来说不能实现不可变，Obje
 - Purity: js不会强制purity,允许表达式存在副作用
 - Immutability
 - Recursion: 一些函数式编程语言中，这是唯一的方式去进行迭代，没有for, while，do等。尾部调用， js在es6中实现了。 => 允许递归函数复用栈帧。
+
+
+### 参考：
+1. https://mostly-adequate.gitbook.io/mostly-adequate-guide/ch06
+2. https://github.com/getify/Functional-Light-JS/blob/master/manuscript/ch6.md
