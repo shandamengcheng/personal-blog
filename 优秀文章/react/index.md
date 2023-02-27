@@ -8,7 +8,7 @@
 什么时候应该用 useMemo/useCallback？1）React.memo 过的组件的 props 应该用，因为他们只有 props 变更时才会 re-render，所以反之非 React.memo 过的组件的 props 无需使用，因为都会 re-render，用了也白用，2）useEffect、useMemo、useCallback 中非原始值的依赖应该用，3）重消耗（比如生成渲染树）的部分应该用，反之轻消耗不要用，因为 useMemo/useCallback 本身也有消耗。
 如何防止 Context 引起的 re-render？1）memo context value，避免父级组件 re-render 导致 value 变更从而让依赖 context 的地方全部 re-render，2）拆分 data 和 API（getter 和 setter），这样 getter 变更时依赖 setter 的部分不会 re-render，3）把数据拆小，4）使用 context selector 比如 use-context-selector。
 
-2. [Why reacgt re-renders](https://www.joshwcomeau.com/react/why-react-re-renders/)
+2. [Why react re-renders](https://www.joshwcomeau.com/react/why-react-re-renders/)
 
 3. [生命周期图示](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
@@ -18,11 +18,15 @@
 
 6. [Prop Drilling](https://kentcdodds.com/blog/prop-drilling)
 
+- [虚拟DOM](https://medium.com/@gethylgeorge/how-virtual-dom-and-diffing-works-in-react-6fc805f9f84e)
+
 ## Hooks
 
 1. [Do React Hooks Replace Redux?](https://medium.com/javascript-scene/do-react-hooks-replace-redux-210bab340672)
 
 2. [Why hooks are the best thing to happen to React](https://stackoverflow.blog/2021/10/20/why-hooks-are-the-best-thing-to-happen-to-react/)
+
+
 ## 项目 OR 库
 
 1. https://github.com/remarkablemark/html-react-parser
