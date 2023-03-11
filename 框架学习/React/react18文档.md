@@ -60,3 +60,61 @@ function render() {
     ReactDOM.render(<App />, document.getElementById('root'));
 }
 ```
+> https://beta.reactjs.org/learn/state-a-components-memory 这里有个简单的原理实现
+
+## useEffect实现
+```javascript
+let hooksArray = [];
+let cursor = 0;
+function useEffect(callback, deps) {
+    const hasNoDeps = !deps;
+    const depsChanged = hooksArray[cursor] ? !deps.every((dep, i) => dep === hooksArray[cursor][i]) : true;
+    if (hasNoDeps || depsChanged) {
+        callback();
+        hooksArray[cursor] = deps;
+    }
+    cursor++;
+}
+
+function render() {
+    cursor = 0;
+    ReactDOM.render(<App />, document.getElementById('root'));
+}
+
+```   
+
+## React Re-render
+- 如果在一个事件处理函数里面多次调用setState更新state，那么React会把这些更新合并成一个更新，然后在事件处理函数执行结束后再进行更新。
+- react不会对事件处理函数进行合并，每个事件处理函数都会单独执行。
+- 如果想要执行多次更新，可以给状态变更函数穿一个函数作为参数，这个函数会接收到更新队列中上一次的state作为参数，然后返回一个新的state。
+```javascript
+function Counter() {
+    const [count, setCount] = useState(0);
+    const [count2, setCount2] = useState(0);
+    function handleClick() {
+        setCount(count + 1);
+        setCount(count + 1);
+    }
+    function handleClick2() {
+        setCount2((c) => c + 1);
+        setCount2((c) => c + 1);
+    }
+    return (
+        <div>
+            <button onClick={handleClick}>Click</button>
+            <button onClick={handleClick2}>Click2</button>
+            <p>{count}</p>
+            <p>{count2}</p>
+        </div>
+    )
+}
+```
+> https://beta.reactjs.org/learn/queueing-a-series-of-state-updates 这个讲解state的更新原理非常清晰
+
+
+## state保持read-only
+### 如果state是一个对象
+可以使用immer来实现state的不可变性。
+- immer是一个用来生成不可变数据的库，可以让我们在不改变原始数据的情况下，生成一个新的数据。
+- immer的原理是使用了Proxy，Proxy可以拦截对象的读写操作，然后在读写操作时，生成一个新的对象。
+- 
