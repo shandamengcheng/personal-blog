@@ -117,4 +117,102 @@ function Counter() {
 可以使用immer来实现state的不可变性。
 - immer是一个用来生成不可变数据的库，可以让我们在不改变原始数据的情况下，生成一个新的数据。
 - immer的原理是使用了Proxy，Proxy可以拦截对象的读写操作，然后在读写操作时，生成一个新的对象。
-- 
+
+
+## State相关
+### 为什么state的更新是异步的
+- 为了提升性能，React会把多个setState合并成一个更新，然后在事件处理函数执行结束后再进行更新。
+- 如果state的更新是同步的，那么在事件处理函数中，state的更新会被合并，然后在事件处理函数执行结束后再进行更新，这样会导致state的更新不是最新的。
+
+### state结构
+- 删除任何非必要的状态变量
+  - 如果一个状态变量可以通过其他状态变量计算出来，那么就不需要这个状态变量了。
+  - 状态会引起悖论吗？比如form的state, isTyping, isSubmitting不可能同时为true,因此如果设置这两个状态，两个布尔值之间会有四种组合，但是只有三个是合法的。因此，对于这种情况，使用status来替换这两个state, status有三个值，typing, submitting, success。
+- 结构化状态
+  - 把相关的状态组合起来，放到一个对象中，这样可以减少状态的数量，减少状态的更新。
+  - 避免矛盾的状态，⬆️面有讲到。
+  - 避免状态的冗余，比如一个状态可以通过其他状态计算出来，那么就不需要这个状态了。
+  - 避免状态的深层嵌套，如果状态的嵌套层级太深，那么就需要写很多的`?.`来访问状态，这样会导致代码的可读性变差。
+- 不要把props放到state里面。如果prop作为state的初始值，如果prop发生变化，但是这个时候prop只是作为useState的initialValue,那么state不会发生变化，这样会导致state和prop不一致。
+
+## 如何保存被移除组件的状态
+- 初始渲染的时候，渲染所有的组件而不是仅仅渲染需要的那个。然后，使用CSS来隐藏其他的组件。这样的话，组件就不会从组件树中移除，从而保存了各个组件的本地状态。**但是这种做法只适合简单的UI，如果一个组件的UI比较复杂的话，就会使渲染变慢。**
+- 提升组件的状态，把状态相关的数据放到父组件中，这是最常见的方式。
+- 可以把使用一个非React state的数据来源。可以把相关的数据存在localStorage中。
+
+## 抽象State逻辑到一个Reducer中
+当我们有多同一个或同一类数据进行处理的时候，可以把这部分的逻辑抽象出来。
+比如，
+```javascript
+function handleAddTask(text) {
+  setTasks([
+    ...tasks,
+    {
+      id: nextId++,
+      text: text,
+      done: false,
+    },
+  ]);
+}
+
+function handleChangeTask(task) {
+  setTasks(
+          tasks.map((t) => {
+            if (t.id === task.id) {
+              return task;
+            } else {
+              return t;
+            }
+          })
+  );
+}
+
+function handleDeleteTask(taskId) {
+  setTasks(tasks.filter((t) => t.id !== taskId));
+}
+
+=> 
+
+function handleAddTask(text) {
+  dispatch({
+    type: 'added',
+    id: nextId++,
+    text: text,
+  });
+}
+
+function handleChangeTask(task) {
+  dispatch({
+    type: 'changed',
+    task: task,
+  });
+}
+
+function handleDeleteTask(taskId) {
+  dispatch({
+    type: 'deleted',
+    id: taskId,
+  });
+}
+
+```
+> 个人理解是，如果有一些state的数据处理可以用switch来处理，那么就可以把这部分的逻辑抽象出来，使用Reducer的思想来处理这段数据。
+
+### useState VS useReducer
+- 代码量
+  - 如果state的更新逻辑比较简单，那么使用useState会比较简单。
+  - 如果state的更新逻辑比较复杂，那么使用useReducer会比较简单。尤其是当有许多事件处理函数需要以相似的方式处理state的时候。
+- 可读性
+  - 如果state的更新逻辑比较简单，那么使用useState会比较简单。
+  - useReducer可以清楚地将更新逻辑的方式与事件处理程序发生的情况分离开来。
+- 调试
+  - useReducer由于是把state的更新逻辑抽象出来，所以可以把action和state两部分分别清晰的排查。只是相对于useState而言，可能一步步要排查的代码多一些。
+- 测试
+  - reducer是一个纯函数
+
+> 官方推荐：如果在一些组件经常遇到由于非正确的更新state导致的bugs时，这个时候建议使用useReducer。
+
+### useReducer的注意点
+- reducer函数一定要是pure的，也就是说，reducer函数不应该有副作用，比如修改外部变量，或者调用非纯函数。
+- 每一个action只描述用户的一个行为，即使这个行为会导致多个state的更新。
+- > https://beta.reactjs.org/learn/extracting-state-logic-into-a-reducer#writing-concise-reducers-with-immer
