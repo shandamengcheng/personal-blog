@@ -216,3 +216,35 @@ function handleDeleteTask(taskId) {
 - reducer函数一定要是pure的，也就是说，reducer函数不应该有副作用，比如修改外部变量，或者调用非纯函数。
 - 每一个action只描述用户的一个行为，即使这个行为会导致多个state的更新。
 - > https://beta.reactjs.org/learn/extracting-state-logic-into-a-reducer#writing-concise-reducers-with-immer
+
+
+## 通过Context传递深层数据
+- 通过Context传递数据，可以避免在组件树中传递props。 => prop drilling
+- 每个context都是独立的，一个组件可以使用或提供多个不同的context。
+
+### 不一定使用Context的情况
+- 传递参数。对于一些不是非常简单的组件，通过props传递参数可能是必要的。这样做可以清晰地表明哪些组件使用了哪些数据。在维护代码时，其他人也会对数据的流动更加明确。
+- 抽象组件，将JSX作为children传递
+```javascript
+<Layout posts={posts} /> 
+// 这个posts不会在Layout组件中使用
+
+// => 改为以下方式：
+<Layout>
+  <Posts posts={posts} />
+</Layout>
+```
+
+> 如果上面两种方式都不适用，那么就可以使用Context来传递数据。
+
+### 使用场景
+- 主题。如果想改变外观之类的。 语言之类的i18n也是可以使用的。
+- 当前的账户。可能在应用的不同地方需要用户账户信息。
+- 路由。
+> 大多数路由解决方案在内部使用了上下文来保存当前路由。这就是每个链接如何"知道"它是否处于活跃状态。
+- 管理状态。随着应用程序的增长，最终可能会有很多状态接近应用程序的顶部。
+下面许多遥远的组件可能想要改变它。常见的做法是将 reduce 与上下文一起使用，以管理复杂的状态，并将其传递给远程组件，而不会产生太多麻烦。
+
+
+
+> 如果更新了Contest的值，那么所有使用了这个Context的组件都会重新渲染。所以，如果Context的值是一个对象，那么就要注意，如果对象的值发生了变化，那么组件也会重新渲染。这个时候，可以使用useMemo来避免不必要的渲染。
