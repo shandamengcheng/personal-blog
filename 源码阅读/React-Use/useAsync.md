@@ -36,7 +36,7 @@ export default function useAsync(asyncFunction,  deps = []) {
     }
 ```
 
-## 2. useAsync - 官方实现
+## 2. useAsyncFc - 官方实现
 
 ```typescript
 import { DependencyList, useCallback, useRef, useState } from 'react';
