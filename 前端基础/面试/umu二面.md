@@ -1,0 +1,37 @@
+- localStorage key-value 存储的value大小限制
+- cookie的字段值的大小限制
+- sessionStorage localStorage的区别
+- 浏览器能直接通过本地的路径来读取文件吗？为什么
+- 为什么要转BASE64
+- 怎么实现二进制数据转base64
+- 怎么实现base64再转成file对象
+- 前端怎么存储大数据？
+  - indexDB?
+  - serviceWorker => Cache
+    - Cache可以直接通过js来修改缓存吗
+- csrf的实现原理，为什么可以会进行身份冒用
+- 怎么样测试一个接口是否存在csrf问题。
+- 还有没有什么其他的方式来读取文件 => FileSystem
+- 股票买卖实现
+- 如何实现一个包含中英文的字符串，对英文进行<em>添加
+  - 栈
+  - replace()
+- 如何找到第90大的数字，在一个数组里面
+  - https://www.nowcoder.com/practice/e016ad9b7f0b45048c58a9f27ba618bf?tpId=295&tqId=44581&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj
+  - 快排
+- 如何实现不同国家钱的表示的不同
+  - API
+  - API内部怎么实现
+  - 有什么边界情况考虑
+- 如何展示不同的时区
+  - 浏览器Date有什么API => toLocalString()?
+- 如何设置多语言
+- 性能优化关注的指标
+- 如何测量这些指标
+- 动态加载（路由，组件啊），webpack那里需要做什么配置吗
+- react常用的hooks
+- useCallback和useMemo的常用场景
+  - 依赖项，内部是怎么比较的
+- 如果一个事件处理函数不使用useCallback会怎么样呢
+- 使用useContext和redux有什么异同点
+- 响应式 => react mobx

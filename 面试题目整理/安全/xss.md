@@ -23,3 +23,4 @@ XSS 攻击使攻击者能够将客户端脚本注入到其他用户查看的网�
 > https://en.wikipedia.org/wiki/Cross-site_scripting
 > https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html
 > https://owasp.org/www-community/attacks/xss/#stored-and-reflected-xss-attacks
+> https://github.com/LyleMi/Learn-Web-Hacking/blob/master/source/index.rst

@@ -164,6 +164,17 @@ Microtask类型：
 - Mutation Observer
 - queueMicrotask()方法
 
+<hr />
+一个event loop有一个或多个task queues。一个task queue是一个任务集合。
+> task queues是sets，而不是queues。这是因为event loop processing model获取第一个可执行的任务从被选择的queue中,而不是做dequeuing操作。
+> 微任务队列是队列。
+
+### Task sources 
+1. DOM操作
+2. 用户交互
+3. 网络
+4. 导航以及历史遍历
+
 ### 参考文献
 - [Introduction to JavaScript Runtime Environments](https://www.codecademy.com/article/introduction-to-javascript-runtime-environments)
 - [Call Stack](https://developer.mozilla.org/en-US/docs/Glossary/Call_stack)

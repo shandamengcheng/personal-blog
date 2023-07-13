@@ -1,0 +1,23 @@
+- 怎么实现动态加载 => lazy + suspense
+- 动态import() ，webpack是怎么处理动态加载的
+- 如果使用Js实现动态加载代码怎么实现 => 动态创建script标签
+- defer, async 和没有这两个标签的区别
+- 如何减少react re-render
+- 网盘的上传，下载，移动分别是怎么实现的
+- 分块上传的话，怎么分块的
+- 获取文件的uploadId是根据什么计算的
+  - 需要文件的部分数据？
+- 什么是断点续传
+- 在断点续传的时候，服务端怎么判断这个是之前的文件
+  - uploadId相同？
+- 流式上传的时候，需要有什么Htpp header吗
+- 了解Node中流的处理吗
+- 上传组件是怎么实现的，有什么技术难点，怎么解决的
+  - mac 上accept可以逃过，怎么处理 => isAccept()判断
+  - 如果图片本来是webp, 改成了a.png，会识别出来吗？
+  - 识别文件真正类型：magic number
+    - 怎么获取每个文件的maigc number并判断的？
+- 实现题
+  - 实现一个自定义hook来获取window的宽高（resize事件监听？）
+  - 参数：chunks数组，onSucess, onFiled, onProgress参数。
+    - 要求实现最大并行为6的分块上传，每个请求，如果失败retry 3次，3次之后还是失败设置失败状态，在所有请求发送完成之后再调用onError
